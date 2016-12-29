@@ -174,7 +174,6 @@
 				0C3987E21E14EBF40037EE8D /* Info.plist */,
 				0C3987DF1E14EBF40037EE8D /* LaunchScreen.storyboard */,
 			);
-			name = Zsupport;
 			path = Zsupport;
 			sourceTree = "<group>";
 		};
@@ -184,7 +183,6 @@
 				0C3988131E14FAD00037EE8D /* DetailViewController.swift */,
 				0C3987D81E14EBF40037EE8D /* ViewController.swift */,
 			);
-			name = Controller;
 			path = Controller;
 			sourceTree = "<group>";
 		};
@@ -196,7 +194,6 @@
 				0C39881A1E14FECF0037EE8D /* RealmUser.swift */,
 				0C39880C1E14EEBC0037EE8D /* User.swift */,
 			);
-			name = Model;
 			path = Model;
 			sourceTree = "<group>";
 		};
@@ -206,18 +203,16 @@
 				0C3988171E14FC8E0037EE8D /* BookListTableViewCell.swift */,
 				0C3988151E14FC860037EE8D /* UserHeaderTableViewCell.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
 		0C3988241E15055E0037EE8D /* DataCenter */ = {
 			isa = PBXGroup;
 			children = (
-				0C3988221E1500360037EE8D /* BookDataCenter.swift */,
 				0C39881E1E14FFE50037EE8D /* DataCenter.swift */,
+				0C3988221E1500360037EE8D /* BookDataCenter.swift */,
 				0C3988201E15002F0037EE8D /* UserDataCenter.swift */,
 			);
-			name = DataCenter;
 			path = DataCenter;
 			sourceTree = "<group>";
 		};
@@ -227,7 +222,6 @@
 				0C3988271E15057A0037EE8D /* BookDetailViewModel.swift */,
 				0C3988251E15056D0037EE8D /* BookListViewModel.swift */,
 			);
-			name = ViewModel;
 			path = ViewModel;
 			sourceTree = "<group>";
 		};

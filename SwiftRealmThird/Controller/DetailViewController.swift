@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class DetailViewController: UIViewController {
     
@@ -15,6 +16,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var bookStatusLabel: UILabel!
     
     var bookDetailViewModel: BookDetailViewModel!
+    var bookManager = BookDataCenter()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,11 @@ class DetailViewController: UIViewController {
     }
 
     @IBAction func statusButtonAction(_ sender: UIButton) {
-        
+        bookManager.changeStatusWithBook(id: bookDetailViewModel.bookID()) {
+            [weak self] book in
+            if let strongSelf = self {
+                strongSelf.bookStatusLabel.text = book.statusText
+            }
+        }
     }
 }

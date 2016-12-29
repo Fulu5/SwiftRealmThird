@@ -17,4 +17,5 @@ protocol UserDataProtocol {
 protocol BookDataProtocol {
     func getBooksFromDB() -> [Book]
     func saveBooksToDB()
+    func changeStatusWithBook(id: Int, success: @escaping (_ book: Book) -> Void)
 }

@@ -19,4 +19,7 @@ struct BookDetailViewModel {
     func bookStatus() -> String {
         return book.statusText
     }
+    func bookID() -> Int {
+        return book.id
+    }
 }
