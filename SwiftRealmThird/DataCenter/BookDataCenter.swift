@@ -10,16 +10,29 @@ import UIKit
 import RealmSwift
 
 struct BookDataCenter: BookDataProtocol {
+    // 通知中心
+    var notificationToken: NotificationToken!
     // 取值
-    func getBooksFromDB() -> [Book] {
+    mutating func getBooksFromDB(notiHandler: ((NotificationType) -> Void)?) -> [Book] {
+
+        func mapResults(_ results: Results<RealmBook>) -> [Book] {
+            return results.map({
+                Book(id: $0.id, name: $0.name, author: $0.author, status: $0.status)
+            })
+        }
         let realm = try! Realm()
         let results = realm.objects(RealmBook.self)
+        notificationToken = results.addNotificationBlock {(changes) in
+            switch changes {
+            case .update(let value, _, _, let modifications):
+                if modifications.count != 0 {
+                    notiHandler?(.modifications(indics: modifications, results: mapResults(value)))
+                }
+                break
+            default:break
+            }
+        }
         return mapResults(results)
-    }
-    func mapResults(_ results: Results<RealmBook>) -> [Book] {
-        return results.map({
-            Book(id: $0.id, name: $0.name, author: $0.author, status: $0.status)
-        })
     }
     // 存值
     func saveBooksToDB() {

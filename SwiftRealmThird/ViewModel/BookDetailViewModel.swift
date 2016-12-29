@@ -10,6 +10,7 @@ import Foundation
 
 struct BookDetailViewModel {
     var book: Book
+    
     func bookName() -> String {
         return book.name
     }

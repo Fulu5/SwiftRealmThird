@@ -11,14 +11,31 @@ import UIKit
 class ViewController: UITableViewController {
 
     let userCenter = UserDataCenter()
-    let bookCenter = BookDataCenter()
+    var bookCenter = BookDataCenter()
     var viewModel: BookListViewModel!
+    
+    func bookStatusNotiHandler() -> (((_ type: NotificationType) -> Void)?) {
+        return {
+            [weak self] type in
+            guard let strongSelf = self else { return }
+            switch type {
+            case .modifications(let modifications, let value):
+                    strongSelf.viewModel.setBooks(value)
+                    strongSelf.tableView.beginUpdates()
+                    strongSelf.tableView.reloadRows(at: modifications.map({
+                        IndexPath(row: $0, section: 0)
+                    }), with: .automatic)
+                    strongSelf.tableView.endUpdates()
+                break
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "All Books"
         
-        let books = bookCenter.getBooksFromDB()
+        let books = bookCenter.getBooksFromDB(notiHandler: bookStatusNotiHandler())
         let user = userCenter.getUserFromDB()
         viewModel = BookListViewModel(books: books, user: user!)
     }

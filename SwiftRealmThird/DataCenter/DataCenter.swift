@@ -7,7 +7,10 @@
 //
 
 import Foundation
-import RealmSwift
+
+enum NotificationType {
+    case modifications(indics: [Int], results: [Book])
+}
 
 protocol UserDataProtocol {
     func getUserFromDB() -> User?
@@ -15,7 +18,7 @@ protocol UserDataProtocol {
 }
 
 protocol BookDataProtocol {
-    func getBooksFromDB() -> [Book]
+    mutating func getBooksFromDB(notiHandler: ((_ type: NotificationType) -> Void)?) -> [Book]
     func saveBooksToDB()
     func changeStatusWithBook(id: Int, success: @escaping (_ book: Book) -> Void)
 }

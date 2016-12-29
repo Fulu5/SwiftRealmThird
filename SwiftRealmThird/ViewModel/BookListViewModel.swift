@@ -11,6 +11,7 @@ import Foundation
 struct BookListViewModel {
     var books: [Book]
     var user: User?
+    
     init(books: [Book], user: User) {
         self.books = books
         self.user = user
@@ -23,5 +24,8 @@ struct BookListViewModel {
     }
     func userInfo() -> (name: String, bookCount: String) {
         return (name: user!.name, bookCount: "\(books.count)books in total")
+    }
+    mutating func setBooks(_ books: [Book]) {
+        self.books = books
     }
 }
