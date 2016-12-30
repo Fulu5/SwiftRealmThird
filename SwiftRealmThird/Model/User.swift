@@ -11,4 +11,5 @@ import Foundation
 struct User {
     let id: Int
     let name: String
+    var books: [Book]?
 }

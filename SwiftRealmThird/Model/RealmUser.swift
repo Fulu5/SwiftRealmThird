@@ -12,4 +12,5 @@ import RealmSwift
 class RealmUser: Object {
     dynamic var id = 0
     dynamic var name = ""
+    let books = List<RealmBook>()
 }

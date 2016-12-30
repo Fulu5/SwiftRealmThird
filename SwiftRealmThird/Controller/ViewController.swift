@@ -26,15 +26,13 @@ class ViewController: UITableViewController {
                         IndexPath(row: $0, section: 0)
                     }), with: .automatic)
                     strongSelf.tableView.endUpdates()
-                break
             }
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "All Books"
-        
+        title = "My Books"
         let books = bookCenter.getBooksFromDB(notiHandler: bookStatusNotiHandler())
         let user = userCenter.getUserFromDB()
         viewModel = BookListViewModel(books: books, user: user!)

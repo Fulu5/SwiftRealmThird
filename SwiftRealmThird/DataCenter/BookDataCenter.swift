@@ -15,14 +15,14 @@ struct BookDataCenter: BookDataProtocol {
     // 取值
     mutating func getBooksFromDB(notiHandler: ((NotificationType) -> Void)?) -> [Book] {
 
-        func mapResults(_ results: Results<RealmBook>) -> [Book] {
+        let realm = try! Realm()
+        let realmUser = realm.objects(RealmUser.self).last!
+        func mapResults(_ results: List<RealmBook>) -> [Book] {
             return results.map({
-                Book(id: $0.id, name: $0.name, author: $0.author, status: $0.status)
+                Book(id: $0.id, name: $0.name, author: $0.author, status: $0.status, owner: nil)
             })
         }
-        let realm = try! Realm()
-        let results = realm.objects(RealmBook.self)
-        notificationToken = results.addNotificationBlock {(changes) in
+        notificationToken = realmUser.books.addNotificationBlock {(changes) in
             switch changes {
             case .update(let value, _, _, let modifications):
                 if modifications.count != 0 {
@@ -32,20 +32,29 @@ struct BookDataCenter: BookDataProtocol {
             default:break
             }
         }
-        return mapResults(results)
+        return mapResults(realmUser.books)
+    }
+    
+    func getBookWithID(_ id: Int) -> Book? {
+        let realm = try! Realm()
+        
+        guard let realmBook = realm.objects(RealmBook.self).filter("id = %@", id).first else {
+            return nil
+        }
+        return bookFromRealmBook(realmBook)
     }
     // 存值
     func saveBooksToDB() {
-        for i in 0...9 {
-            let realmBook = RealmBook(value: ["id": i, "name": "book - \(i)", "author": "author - \(i)", "status": false])
+        for i in 10...19 {
+            let realmBook = RealmBook(value: ["id": i, "name": "Book -- \(i)", "author": "author-\(i)", "status": false])
             addBookToDB(realmBook)
         }
     }
-    func addBookToDB(_ book: RealmBook) {
+    func addBookToDB(_ realmBook: RealmBook) {
         DispatchQueue.global().async {
             let realm = try! Realm()
             try! realm.write {
-                realm.add(book)
+                realm.add(realmBook)
             }
         }
     }
@@ -65,6 +74,6 @@ struct BookDataCenter: BookDataProtocol {
         }
     }
     func bookFromRealmBook(_ realmBook: RealmBook) -> Book {
-        return Book(id: realmBook.id, name: realmBook.name, author: realmBook.author, status: realmBook.status)
+        return Book(id: realmBook.id, name: realmBook.name, author: realmBook.author, status: realmBook.status, owner: nil)
     }
 }

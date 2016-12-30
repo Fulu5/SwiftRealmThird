@@ -75,6 +75,7 @@
 		0C3988221E1500360037EE8D /* BookDataCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDataCenter.swift; sourceTree = "<group>"; };
 		0C3988251E15056D0037EE8D /* BookListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookListViewModel.swift; sourceTree = "<group>"; };
 		0C3988271E15057A0037EE8D /* BookDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookDetailViewModel.swift; sourceTree = "<group>"; };
+		0C39882C1E157DCF0037EE8D /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,14 +129,14 @@
 		0C3987D51E14EBF40037EE8D /* SwiftRealmThird */ = {
 			isa = PBXGroup;
 			children = (
+				0C3987D61E14EBF40037EE8D /* AppDelegate.swift */,
+				0C3987DA1E14EBF40037EE8D /* Main.storyboard */,
 				0C39880B1E14EEB10037EE8D /* Controller */,
 				0C3988241E15055E0037EE8D /* DataCenter */,
 				0C39880E1E14EEC10037EE8D /* Model */,
 				0C3988191E14FC920037EE8D /* View */,
 				0C3988291E1505D00037EE8D /* ViewModel */,
 				0C39880A1E14ED1A0037EE8D /* Zsupport */,
-				0C3987D61E14EBF40037EE8D /* AppDelegate.swift */,
-				0C3987DA1E14EBF40037EE8D /* Main.storyboard */,
 			);
 			path = SwiftRealmThird;
 			sourceTree = "<group>";
@@ -161,6 +162,7 @@
 		0C3988041E14ECDC0037EE8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C39882C1E157DCF0037EE8D /* Cartfile */,
 				0C3988071E14ECE50037EE8D /* RealmSwift.framework */,
 				0C3988051E14ECDD0037EE8D /* Realm.framework */,
 			);
@@ -180,8 +182,8 @@
 		0C39880B1E14EEB10037EE8D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0C3988131E14FAD00037EE8D /* DetailViewController.swift */,
 				0C3987D81E14EBF40037EE8D /* ViewController.swift */,
+				0C3988131E14FAD00037EE8D /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

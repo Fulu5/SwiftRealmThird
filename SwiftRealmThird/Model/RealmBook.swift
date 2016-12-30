@@ -14,4 +14,5 @@ class RealmBook: Object {
     dynamic var name = ""
     dynamic var author = ""
     dynamic var status = false
+    let owner = LinkingObjects(fromType: RealmUser.self, property: "books")
 }

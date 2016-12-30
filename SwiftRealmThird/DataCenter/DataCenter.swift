@@ -20,5 +20,6 @@ protocol UserDataProtocol {
 protocol BookDataProtocol {
     mutating func getBooksFromDB(notiHandler: ((_ type: NotificationType) -> Void)?) -> [Book]
     func saveBooksToDB()
+    func getBookWithID(_ id: Int) -> Book?
     func changeStatusWithBook(id: Int, success: @escaping (_ book: Book) -> Void)
 }

@@ -23,7 +23,7 @@ struct BookListViewModel {
         return books[index]
     }
     func userInfo() -> (name: String, bookCount: String) {
-        return (name: user!.name, bookCount: "\(books.count)books in total")
+        return (name: user!.name, bookCount: "\(books.count) books in total")
     }
     mutating func setBooks(_ books: [Book]) {
         self.books = books

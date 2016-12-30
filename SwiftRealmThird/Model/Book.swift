@@ -13,6 +13,7 @@ struct Book {
     let name: String
     let author: String
     let status: Bool
+    var owner: User?
 }
 
 extension Book {
